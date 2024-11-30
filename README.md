@@ -18,6 +18,7 @@ This repository contains a **to-do application** built with **Next.js**. It is a
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework for styling.
 - [Daisy UI](https://daisyui.com/) - Component library built on Tailwind CSS.
 - [Shadcn](https://shadcn.dev/) - For UI components and design.
+- [MongoDB - Mongoose](https://mongoosejs.com/) - Mongoose for Databse.
 
 ## Getting Started
 
