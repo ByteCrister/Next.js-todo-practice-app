@@ -7,12 +7,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '@/lib/hooks';
 
 
 const AccordionTemplateDefault = ({ props }) => {
   const [state, setState] = useState({ title: '', description: '', _id: '', isEdit: null });
-  const { isButtonLoading } = useSelector((store) => store.todoStore);
+  const { isButtonLoading } = useAppSelector((store) => store.todoStore);
 
   useEffect(() => {
     const { title, description, _id, isEdit } = props;

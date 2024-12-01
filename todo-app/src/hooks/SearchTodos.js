@@ -1,11 +1,11 @@
 'use client'
 
-const SearchTodos = (searchedItems, setTodoState, SearchTodoStore) => {
+const SearchTodos = (searchedItems, setTodoState, todos) => {
 
     searchedItems = String(searchedItems).toLowerCase();
-    let Updated = SearchTodoStore.map((item) => ({ ...item, point: 0 }));
+    let Updated = todos.map((item) => ({ ...item, point: 0 }));
 
-    SearchTodoStore.forEach((item) => {
+    todos.forEach((item) => {
         let totalPoints = 0;
 
         Object.entries(item).map(([key, value]) => {

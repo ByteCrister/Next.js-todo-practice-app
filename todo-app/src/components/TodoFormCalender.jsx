@@ -10,7 +10,7 @@ import { CalendarIcon } from "lucide-react";
 
 const TodoFormCalender = ({ taskDate, setTaskDate }) => {
     const handleDateSelect = (date) => {
-        const formattedDate = new Date(date).toISOString();
+        const formattedDate = new Date(date);
         setTaskDate(formattedDate);
     };
 

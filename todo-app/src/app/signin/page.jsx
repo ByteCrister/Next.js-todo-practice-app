@@ -6,11 +6,10 @@ import axios from 'axios';
 import Link from 'next/link';
 
 import { showToastWithCloseButton } from '@/hooks/showToast';
-import { useDispatch, useSelector } from 'react-redux';
-import store from '@/store';
-import { toggleButtonLoading } from '@/store/todoSlice';
 import signInValidation from '@/hooks/signInValidation';
 import { useRouter } from 'next/navigation';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { toggleButtonLoading } from '@/lib/features/todos/todoSlice';
 
 
 const IoEyeSharp = dynamic(() => import('react-icons/io5').then(mod => mod.IoEyeSharp), { ssr: false });
@@ -19,8 +18,8 @@ const IoEyeOffSharp = dynamic(() => import('react-icons/io5').then(mod => mod.Io
 const Page = () => {
     const [isPasswordShow, setIsPasswordShow] = useState(false);
 
-    const isButtonLoading = useSelector(store => store.todoStore.isButtonLoading);
-    const dispatch = useDispatch();
+    const isButtonLoading = useAppSelector(store => store.todoStore.isButtonLoading);
+    const dispatch = useAppDispatch();
     const router = useRouter();
 
     const formik = useFormik({

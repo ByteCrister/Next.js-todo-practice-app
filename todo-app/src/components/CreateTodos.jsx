@@ -1,15 +1,15 @@
 "use client";
 
 import { showToastWithCloseButton } from '@/hooks/showToast';
-import { fetchTodos, toggleButtonLoading } from '@/store/todoSlice';
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import TodoFormCalender from './TodoFormCalender';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { addTodo, fetchTodos, toggleButtonLoading } from '@/lib/features/todos/todoSlice';
 
 const CreateTodos = () => {
-    const { isButtonLoading } = useSelector((store) => store.todoStore);
-    const dispatch = useDispatch();
+    const { isButtonLoading } = useAppSelector((store) => store.todoStore);
+    const dispatch = useAppDispatch();
 
     const [formState, setFormState] = useState({
         title: '',
@@ -29,15 +29,18 @@ const CreateTodos = () => {
         e.preventDefault();
         try {
             dispatch(toggleButtonLoading(true));
-            await axios.post(`${process.env.NEXT_PUBLIC_DOMAIN}/api/todos`, formState);
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_DOMAIN}/api/todos`, formState);
+
             showToastWithCloseButton('Todo created Successfully', 'success');
+            dispatch(addTodo(response.data.todo));
+
             setFormState({
                 title: '',
                 description: '',
                 taskDate: null,
             })
             dispatch(fetchTodos());
-            
+
         } catch (error) {
             console.log(error);
             showToastWithCloseButton(error.response.data.message, 'error');

@@ -1,3 +1,5 @@
+'use client';
+
 import { showToastWithCloseButton } from "@/hooks/showToast";
 import axios from "axios";
 

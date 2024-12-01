@@ -43,12 +43,19 @@ export const POST = async (request) => {
         const token = cookies.value;
         const decoded = await verifyToken(token);
         const user_id = decoded.id;
-
-        const insertBody = { ...body, user_id: user_id, status: 'Pending' };
-        const newTodo = await new TodoModel(insertBody);
+        
+        const insertBody = { ...body, user_id: user_id, status: "Pending" };
+        const newTodo = new TodoModel(insertBody);
         await newTodo.save();
 
-        return NextResponse.json({ success: true, message: 'New Todo Created successfully.' }, { status: 201 });
+        return NextResponse.json(
+            {
+                success: true,
+                message: "New Todo created successfully.",
+                todo: newTodo
+            },
+            { status: 201 }
+        );
     } catch (error) {
         console.log(error);
         return NextResponse.json({ success: false, message: error.message }, { status: 500 });

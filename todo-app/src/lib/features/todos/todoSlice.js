@@ -31,6 +31,10 @@ export const todoSlice = createSlice({
             state.isButtonLoading = action.payload;
         },
 
+        addTodo : (state, action)=>{
+            state.todos = [...state.todos, action.payload];
+        },
+
         setTodos: (state, action) => {
             state.todos = action.payload
         },
@@ -58,6 +62,6 @@ export const todoSlice = createSlice({
     },
 });
 
-export const { toggleButtonLoading, setTodos, deleteTodos } = todoSlice.actions;
+export const { toggleButtonLoading, addTodo, setTodos, deleteTodos } = todoSlice.actions;
 
 export default todoSlice.reducer;
