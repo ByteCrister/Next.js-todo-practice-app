@@ -30,16 +30,16 @@ const AccordionTemplateDefault = ({ props }) => {
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value={`item-${state._id}`}>
-        <AccordionTrigger className=' text-slate-600 font-medium'>
+        <AccordionTrigger className={`text-slate-600 font-medium ${props.status === 'Incomplete' ? 'line-through' : ''}`}>
           {
-            state.isEdit ? <input type='text' id='title' value={state.title} onChange={handleChange}
+            state.isEdit && props.status !== 'Incomplete' ? <input type='text' id='title' value={state.title} onChange={handleChange}
               className='px-2 py-1 text-slate-600 font-medium rounded outline-none' placeholder='title'></input>
               : state.title
           }
         </AccordionTrigger>
-        <AccordionContent className='flex flex-col gap-2  text-slate-600 font-medium'>
+        <AccordionContent className={`flex flex-col gap-2  text-slate-600 font-medium ${props.status === 'Incomplete' ? 'line-through' : ''}`}>
           {
-            state.isEdit ? <>
+            state.isEdit && props.status !== 'Incomplete' ? <>
               <input type='text' id='description' value={state.description} onChange={handleChange}
                 className='px-2 py-1 text-slate-600 font-medium rounded outline-none' placeholder='description'></input>
               {isButtonLoading ? <div className='w-full flex justify-center items-center'>

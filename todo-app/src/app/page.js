@@ -4,11 +4,17 @@ import CreateTodos from "@/components/CreateTodos";
 import TodoTable from "@/components/TodoTable";
 import PageSlider from "@/hooks/PageSlider";
 import { showToastWithCloseButton } from "@/hooks/showToast";
+import { fetchTodos } from "@/lib/features/todos/todoSlice";
+import { useAppSelector } from "@/lib/hooks";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 export default function Home() {
   const router = useRouter();
+  const todos  = useAppSelector((store) => store.todoStore);
+  const dispatch = useDispatch();
 
   const handleSignOut = async () => {
     try {
@@ -20,6 +26,12 @@ export default function Home() {
       showToastWithCloseButton(error.message, 'error');
     }
   };
+
+  useEffect(()=>{
+    if(todos.length === 0){
+      dispatch(fetchTodos());
+    }
+  },[]);
 
   const slides = [
     <TodoTable key={1} />,

@@ -6,8 +6,8 @@ import React from 'react';
 const SelectTemplate = ({ handleSelect, todo }) => {
     return (
         <div>
-            <Select value={todo.status} onValueChange={(value) => handleSelect(value, todo)} className='outline-none'>
-                <SelectTrigger className="w-[180px] outline-none text-slate-500 font-semibold">
+            <Select value={todo.status} onValueChange={(value) => handleSelect(value, todo)} >
+                <SelectTrigger className={`w-[180px] text-slate-500 font-semibold ${todo.status === 'Incomplete' ? 'line-through' : ''}`}>
                     <SelectValue placeholder={todo.status} />
                 </SelectTrigger>
                 <SelectContent className='outline-none text-slate-500 font-semibold'>

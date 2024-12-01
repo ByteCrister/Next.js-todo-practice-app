@@ -7,8 +7,7 @@ import { emailAuthentication } from "@/config/emailAuth";
 export const POST = async (request) => {
     try {
         const body = await request.json();
-        console.log(body);
-
+        
         await connectDB();
         const isUserExist = await UserModel.findOne({ email: body.email });
         if (isUserExist)

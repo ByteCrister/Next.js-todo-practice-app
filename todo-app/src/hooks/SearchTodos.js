@@ -36,11 +36,13 @@ const SearchTodos = (searchedItems, setTodoState, todos) => {
 
     Updated.sort((a, b) => Number(b.point) - Number(a.point));
 
-    setTodoState(prev => ({
-        ...prev,
-        MainTodos: [...Updated],
-        FilteredTodos: [...Updated]
-    }));
+    setTodoState((prev) => {
+        return {
+            ...prev,
+            MainTodos: [...Updated],
+            FilteredTodos: [...Updated].slice(0, 3), 
+        };
+    });    
 
 
 };

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Pagination,
   PaginationContent,
@@ -11,30 +11,49 @@ import {
 } from "@/components/ui/pagination";
 
 const TablePagination = ({ handlePagination, MainTodos }) => {
+  const [currPage, setCurrPage] = useState(1);
+
   const todosPerPage = 3;
   const totalPages = Math.ceil(MainTodos.length / todosPerPage);
 
-  const handlePageChange = (pageNumber) => {
-    const startIndex = (pageNumber - 1) * todosPerPage;
-    const endIndex = pageNumber * todosPerPage;
+  // Paginate data when page changes or MainTodos updates
+  useEffect(() => {
+    const startIndex = (currPage - 1) * todosPerPage;
+    const endIndex = currPage * todosPerPage;
     const paginatedData = MainTodos.slice(startIndex, endIndex);
-    handlePagination(paginatedData);
+    handlePagination(paginatedData); // Send paginated data to parent
+  }, [currPage, MainTodos]);
+
+  // Handle navigation buttons
+  const handlePrevious = () => {
+    setCurrPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handleNext = () => {
+    setCurrPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  const handlePageChange = (index) => {
+    setCurrPage(index);
   };
 
   return (
     <Pagination>
       <PaginationContent>
         {/* Previous Button */}
-        <PaginationItem className='text-slate-500 font-semibold hover:cursor-pointer'>
-          <PaginationPrevious
-            onClick={() => handlePageChange(1)}
-          />
+        <PaginationItem className="text-slate-500 font-semibold hover:cursor-pointer">
+          <PaginationPrevious onClick={handlePrevious} />
         </PaginationItem>
 
         {/* Page Numbers */}
         {[...Array(totalPages).keys()].map((page) => (
           <PaginationItem key={page}>
-            <PaginationLink onClick={() => handlePageChange(page + 1)} className='text-slate-500 font-semibold hover:cursor-pointer'>
+            <PaginationLink
+              onClick={() => handlePageChange(page + 1)}
+              className={`text-slate-500 font-semibold hover:cursor-pointer ${
+                currPage === page + 1 ? "text-slate-700 font-bold" : ""
+              }`}
+            >
               {page + 1}
             </PaginationLink>
           </PaginationItem>
@@ -48,10 +67,8 @@ const TablePagination = ({ handlePagination, MainTodos }) => {
         )}
 
         {/* Next Button */}
-        <PaginationItem className='text-slate-500 font-semibold hover:cursor-pointer'>
-          <PaginationNext
-            onClick={() => handlePageChange(totalPages)} 
-          />
+        <PaginationItem className="text-slate-500 font-semibold hover:cursor-pointer">
+          <PaginationNext onClick={handleNext} />
         </PaginationItem>
       </PaginationContent>
     </Pagination>

@@ -26,7 +26,7 @@ import {
 } from "@/lib/features/todos/todoSlice";
 
 const TodoTable = () => {
-  const { todos, isButtonLoading } = useAppSelector((store) => store.todoStore);
+  const { todos } = useAppSelector((store) => store.todoStore);
   const [todoState, setTodoState] = useState({
     MainTodos: [],
     FilteredTodos: [],
@@ -44,6 +44,7 @@ const TodoTable = () => {
       });
     }
   }, [todos]);
+
 
   const handleSelect = async (value, todo) => {
     if (
@@ -99,15 +100,7 @@ const TodoTable = () => {
   };
 
   const getTodoState = (todo) => {
-    const { title, description, _id } = todo;
-    const obj = {
-      title: title,
-      description: description,
-      _id: _id,
-      isEdit: todo.isEdit,
-      handleUpdate: handleUpdate,
-    };
-    return <AccordionTemplateDefault props={obj} />;
+    return <AccordionTemplateDefault props={{ ...todo, handleUpdate: handleUpdate }} />;
   };
 
   const handleSearch = () => {
@@ -161,7 +154,7 @@ const TodoTable = () => {
                     </TableCell>
 
                     <TableCell>
-                      <span className="text-slate-500 font-semibold">
+                      <span className={`text-slate-500 font-semibold ${todo.status === 'Incomplete' ? 'line-through' : ''}`}>
                         {new Date(todo.taskDate).toUTCString().slice(0, 17)}
                       </span>
                     </TableCell>
