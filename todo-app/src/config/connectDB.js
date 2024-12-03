@@ -5,7 +5,7 @@ const connectDB = async () => {
     console.log('Already connected to the database');
     return;
   }
-  await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_URI); 
+  await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_URI + '/test');
   console.log('Connected to MongoDB');
 };
 
