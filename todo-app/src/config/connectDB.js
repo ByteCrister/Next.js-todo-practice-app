@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
-let isConnected = false; // To track the connection state
-
+let isConnected = false; 
 const connectDB = async () => {
   if (isConnected) {
     console.log('Database already connected');
