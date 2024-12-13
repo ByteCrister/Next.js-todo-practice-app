@@ -114,7 +114,7 @@ const Page = () => {
                     {isButtonLoading ? <span className='loading loading-spinner loading-xs text-slate-500'></span> : "Sign In"}
                 </button>
 
-                <p className='text-slate-500 font-medium'>Don't have an account? <Link href={'/signup'} className='text-tomato_1 hover:underline'>Sign Up</Link></p>
+                <p className='text-slate-500 font-medium'>Don&apos;t have an account? <Link href={'/signup'} className='text-tomato_1 hover:underline'>Sign Up</Link></p>
 
             </form>
         </section>

@@ -22,7 +22,7 @@ const TablePagination = ({ handlePagination, MainTodos }) => {
     const endIndex = currPage * todosPerPage;
     const paginatedData = MainTodos.slice(startIndex, endIndex);
     handlePagination(paginatedData); // Send paginated data to parent
-  }, [currPage, MainTodos]);
+  }, [currPage, MainTodos, handlePagination]);
 
   // Handle navigation buttons
   const handlePrevious = () => {

@@ -32,7 +32,7 @@ export default function HomePage() {
     if(todos.length === 0){
       dispatch(fetchTodos());
     }
-  },[]);
+  },[dispatch, todos.length]);
 
   const slides = [
     <TodoTable key={1} />,
