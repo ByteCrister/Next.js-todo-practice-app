@@ -1,7 +1,7 @@
+import verifyToken from '@/helper/verifyToken';
 import { NextResponse } from 'next/server';
-import jwt from 'jsonwebtoken';
 
-export function middleware(request) {
+export async function middleware(request) {
   // const token = request.cookies.get('__Secure-token')?.value;
   const token = request.cookies.get('token')?.value;
   const { pathname } = request.nextUrl;
@@ -14,7 +14,7 @@ export function middleware(request) {
     return NextResponse.redirect(new URL('/signup', request.url));
   }
 
-  const decodedToken = jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET)
+  const decodedToken = await verifyToken(token);
 
   if (decodedToken) {
     if (pathname === '/signin' || pathname === '/signup') {
