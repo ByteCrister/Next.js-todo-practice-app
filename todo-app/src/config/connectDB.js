@@ -8,9 +8,7 @@ const connectDB = async () => {
     return;
   }
   try {
-    const db = await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_URI + '/test', {
-      dbName: "test", 
-    });
+    const db = await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_URI + '/test');
     isConnected = db.connections[0].readyState === 1;
     console.log('Database connected successfully');
   } catch (error) {
