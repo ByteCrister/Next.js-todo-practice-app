@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import GetTodos from "@/utils/GetTodos";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
@@ -12,14 +12,10 @@ const initialState = {
 };
 
 // * Create an async thunk to fetch todos
-export const fetchTodos = createAsyncThunk(
-    'todos/fetchTodos',
-    async () => {
-        const response = {
-            todos: await GetTodos(),
-        };
-        return response;
-    }
+export const fetchTodos = createAsyncThunk('todos/fetchTodos', async () => {
+    const response = { todos: await GetTodos() };
+    return response;
+}
 );
 
 export const todoSlice = createSlice({
@@ -31,7 +27,7 @@ export const todoSlice = createSlice({
             state.isButtonLoading = action.payload;
         },
 
-        addTodo : (state, action)=>{
+        addTodo: (state, action) => {
             state.todos = [...state.todos, action.payload];
         },
 
