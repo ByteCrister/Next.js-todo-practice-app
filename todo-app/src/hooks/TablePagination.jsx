@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import {
   Pagination,
@@ -22,7 +23,7 @@ const TablePagination = ({ handlePagination, MainTodos }) => {
     const endIndex = currPage * todosPerPage;
     const paginatedData = MainTodos.slice(startIndex, endIndex);
     handlePagination(paginatedData); // Send paginated data to parent
-  }, [currPage, MainTodos, handlePagination]);
+  }, [currPage, MainTodos]);
 
   // Handle navigation buttons
   const handlePrevious = () => {

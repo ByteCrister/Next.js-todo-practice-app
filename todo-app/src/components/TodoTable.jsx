@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import {
   Table,
@@ -36,7 +37,7 @@ const TodoTable = () => {
   const searchedItems = useRef();
 
   useEffect(() => {
-    if (todos.length > 0) {
+    if (todos && todos.length > 0) {
       const Updated = todos.map((todo) => ({ ...todo, isEdit: false }));
       setTodoState({
         MainTodos: Updated,

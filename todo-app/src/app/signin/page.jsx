@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import dynamic from 'next/dynamic';
@@ -9,7 +10,7 @@ import { showToastWithCloseButton } from '@/hooks/showToast';
 import signInValidation from '@/hooks/signInValidation';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { toggleButtonLoading } from '@/lib/features/todos/todoSlice';
+import { fetchTodos, toggleButtonLoading } from '@/lib/features/todos/todoSlice';
 
 
 const IoEyeSharp = dynamic(() => import('react-icons/io5').then(mod => mod.IoEyeSharp), { ssr: false });
@@ -35,6 +36,7 @@ const Page = () => {
                 console.log(response.data);
 
                 dispatch(toggleButtonLoading(false));
+                dispatch(fetchTodos());
                 router.push('/');
 
             } catch (error) {
