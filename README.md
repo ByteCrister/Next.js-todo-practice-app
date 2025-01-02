@@ -32,5 +32,5 @@ This repository contains a **to-do application** built with **Next.js**. It is a
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/nextjs-todo-app.git
+   git clone https://github.com/ByteCrister/Next.js-todo-practice-app.git
    cd nextjs-todo-app
