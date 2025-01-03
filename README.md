@@ -21,6 +21,7 @@ This repository contains a **to-do application** built with **Next.js**. It is a
 - [MongoDB - Mongoose](https://mongoosejs.com/) - Mongoose for Databse.
 
 ## Getting Started
+[Click to view Live Demo](https://next-js-todo-practice-app.vercel.app/)
 
 ### Prerequisites
 
